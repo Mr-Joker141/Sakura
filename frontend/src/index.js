@@ -1,19 +1,18 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {Provider} from 'react-redux';
-import MedApp from './MedApp';
+import PatientApp from './PatientApp';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
 
 ReactDOM.render(
   <Provider store={store}>
   <React.StrictMode>
-    <MedApp />
-  </React.StrictMode>,
+    <PatientApp />
+  </React.StrictMode>
   </Provider>,
   document.getElementById('root')
-  
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,95 +1,96 @@
 import bcrypt from 'bcryptjs';
 
 const data = {
-    users:[
-        {
-            name:'Methmi',
-            email:'methmi12@gmail.com',
-            password:bcrypt.hashSync('1234', 8),
-            isAdmin:true,
-        },
-        {
-            name:'John',
-            email:'john@gmail.com',
-            password:bcrypt.hashSync('1234', 8),
-            isAdmin:false,
-        },
-
-    ],
-    products:[
-        {
-            
-            name:'Nexpro tablets',
-            category:'Drugs',
-            image:'https://cdn.shopify.com/s/files/1/0368/8785/5243/products/64054_039ec651-fc21-4196-8d0b-fd2b0c73e5e4.png?v=1617173844',
-            price:180,
-            countInStock:0,
-            brand:'Nexpro',
-            rating:4.5,
-            numReviews:10,
-            description:'most recommended brand'
-        },
-        {
-            
-            name:'Glucophage tablets',
-            category:'Drugs',
-            image:'https://onlinepharmacy.lk/wp-content/uploads/2021/07/OIP-73.jpg',
-            price:80,
-            countInStock:10,
-            brand:'Nexpro',
-            rating:4.5,
-            numReviews:10,
-            description:'most recommended brand'
-        },
-        {
-            
-            name:'Dettol plasters',
-            category:'Plasters',
-            image:'https://athalangata.lk/assets/uploads/46a512950c4e5e05d6609d1a60c7f7af.png',
-            price:50,
-            countInStock:10,
-            brand:'Dettol',
-            rating:4.8,
-            numReviews:19,
-            description:'most recommended brand'
-        },
-        {
-            
-            name:'Cotton wools',
-            category:'FirstAid',
-            image:'https://cdn.shopify.com/s/files/1/0368/8785/5243/products/64054_039ec651-fc21-4196-8d0b-fd2b0c73e5e4.png?v=1617173844',
-            price:70,
-            countInStock:10,
-            brand:'Med-ted',
-            rating:5.0,
-            numReviews:10,
-            description:'most quality brand'
-        },
-        {
-            
-            name:'Fucidin oilments',
-            category:'Oilment',
-            image:'https://iprema.shop/wp-content/uploads/2020/11/31835-x1iosz.jpg',
-            price:100,
-           countInStock:10,
-            brand:'Fucidin',
-            rating:9.5,
-            numReviews:60,
-            description:'most recommended brand'
-        },
-        {
-            
-            name:'Piriton tablets',
-            category:'Drugs',
-            image:'https://www.rockethealth.shop/wp-content/uploads/2020/12/piriton-tabs.jpg',
-            price:80,
-            countInStock:5,
-            brand:'Piriton',
-            rating:4.5,
-            numReviews:10,
-            description:'best brand'
-        }
-    ],
+  users: [
+    {
+      name: "Nadun",
+      email: "admin@example.lk",
+      nic: "199934312655",
+      age: 21,
+      address: "Godagama",
+      number: "0714185516",
+      password: bcrypt.hashSync("1234", 8),
+      isAdmin: true,
+    },
+    {
+      name: "pamka",
+      email: "pamka@example.lk",
+      nic: "199934312655",
+      age: 21,
+      address: "Godagama",
+      number: "0714185516",
+      password: bcrypt.hashSync("1234", 8),
+      isAdmin: false,
+    },
+  ],
+  doctors: [
+    {
+      
+      name: "sulthan",
+      category: "Dentist",
+      image: "/images/img.jpg",
+      price: 120,
+      bookingAvailable: 10,
+      specialty: "Dentist",
+      rating: 4.5,
+      numReviews: 10,
+      description: "Best Doctor available",
+    },
+    {
+      name: "balthan",
+      category: "Dentist",
+      image: "/images/img.jpg",
+      price: 120,
+      bookingAvailable: 10,
+      specialty: "Dentist",
+      rating: 4.5,
+      numReviews: 10,
+      description: "Best Doctor available",
+    },
+    {
+      name: "kalthan",
+      category: "Dentist",
+      image: "/images/img.jpg",
+      price: 120,
+      bookingAvailable: 10,
+      specialty: "Dentist",
+      rating: 4.5,
+      numReviews: 10,
+      description: "Best Doctor available",
+    },
+    {
+      name: "niltha",
+      category: "Dentist",
+      image: "/images/img.jpg",
+      price: 120,
+      bookingAvailable: 0,
+      specialty: "Dentist",
+      rating: 4.5,
+      numReviews: 10,
+      description: "Best Doctor available",
+    },
+    {
+      name: "kilthan",
+      category: "Dentist",
+      image: "/images/img.jpg",
+      price: 120,
+      bookingAvailable: 5,
+      specialty: "Dentist",
+      rating: 4.5,
+      numReviews: 10,
+      description: "Best Doctor available",
+    },
+    {
+      name: "sulthani",
+      category: "nalthan",
+      image: "/images/img.jpg",
+      price: 120,
+      bookingAvailable: 0,
+      specialty: "Dentist",
+      rating: 4.5,
+      numReviews: 10,
+      description: "Best Doctor available",
+    },
+  ],
 };
-
 export default data;
