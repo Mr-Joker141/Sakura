@@ -1,80 +1,72 @@
-import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
-import thunk from 'redux-thunk'
-import { cartReducer } from './reducers/cartReducers';
-import { orderCreateReducer, 
-    orderDeleteReducer, 
-    OrderDeliverReducer, 
-    orderDetailsReducer, 
-    orderListReducer, 
-    orderMineLinstReducer, 
-    OrderPayReducer} 
-    from './reducers/orderReducers';
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import thunk from "redux-thunk";
 import {
-    productCategoryListReducer,
-    productCreateReducer,
-     productDeleteReducer,
-     productDetailsReducer,
-      productListReducer, 
-      productReviewCreateReducer, 
-      productUpdateReducer}
-       from "./reducers/productReducers";
-import { 
-    userDeleteReducer,
-    userDetailsReducer,
-    userListReducer,
-    userRegisterReducer,
-     userSigninReducer, 
-     userTopSellerListReducer, 
-     userUpdateProfileReducer,
-     userUpdateReducer} 
-     from './reducers/userReducers';
-const initialState ={
-    userSignin: {
-        userInfo: localStorage.getItem('userInfo')
-          ? JSON.parse(localStorage.getItem('userInfo'))
-          : null,
-      },
-    cart: {
-        cartItems: localStorage.getItem('cartItems')
-        ? JSON.parse(localStorage.getItem('cartItems'))
-        :[],
-        shippingAddress: localStorage.getItem('shippingAddress')
-        ? JSON.parse(localStorage.getItem('shippingAddress'))
-        : {},
-        paymentMethod:'PayPal'
-    }, 
+  appointmentCreateReducer,
+  appointmentDeleteReducer,
+  appointmentDetailsReducer,
+  appointmentFinishReducer,
+  appointmentListReducer,
+  appointmentMineListReducer,
+  appointmentPayReducer,
+  appointmentSummaryReducer,
+} from "./reducers/appointmentReducers";
+import { billingReducer } from "./reducers/billingReducers";
+import {
+  doctorCategoryListReducer,
+  doctorCreateReducer,
+  doctorDeleteReducer,
+  doctorDetailsReducer,
+  doctorListReducer,
+  doctorUpdateReducer,
+} from "./reducers/doctorReducers";
+import { userDeleteReducer, userDetailsReducer, userListReducer, userRegisterReducer, userSigninReducer, userUpdateProfileReducer, userUpdateReducer } from "./reducers/userReducer";
+
+const initialState = {
+  userSignin: {
+    userInfo: localStorage.getItem("userInfo")
+      ? JSON.parse(localStorage.getItem("userInfo"))
+      : null,
+  },
+  billing: {
+    billingItems: localStorage.getItem("billingItems")
+      ? JSON.parse(localStorage.getItem("billingItems"))
+      : [],
+    appointmentDetails: localStorage.getItem("appointmentDetails")
+      ? JSON.parse(localStorage.getItem("appointmentDetails"))
+      : {},
+    paymentMethod: "PayPal",
+  },
 };
 const reducer = combineReducers({
-    productList:productListReducer,
-    productDetails:productDetailsReducer,
-    cart:cartReducer,
-    userSignin:userSigninReducer,
-    userRegister:userRegisterReducer,
-    orderCreate:orderCreateReducer,
-    orderDetails:orderDetailsReducer,
-    orderPay:OrderPayReducer,
-    orderMineList:orderMineLinstReducer,
-    userDetails:userDetailsReducer,
-    userUpdateProfile:userUpdateProfileReducer,
-    userUpdate:userUpdateReducer,
-    productCreate:productCreateReducer,
-    productUpdate:productUpdateReducer,
-    productDelete:productDeleteReducer,
-    orderList:orderListReducer,
-    orderDelete:orderDeleteReducer,
-    orderDeliver:OrderDeliverReducer,
-    userList:userListReducer,
-    userDelete:userDeleteReducer,
-    userTopSellersList:userTopSellerListReducer,
-    productCategoryList:productCategoryListReducer,
-    productReviewCreate:productReviewCreateReducer
+  doctorList: doctorListReducer,
+  doctorDetails: doctorDetailsReducer,
+  billing: billingReducer,
+  userSignin: userSigninReducer,
+  userRegister: userRegisterReducer,
+  appointmentCreate: appointmentCreateReducer,
+  appointmentConfirmDetails: appointmentDetailsReducer,
+  appointmentPay: appointmentPayReducer,
+  appointmentMineList: appointmentMineListReducer,
+  userDetails: userDetailsReducer,
+  userUpdateProfile: userUpdateProfileReducer,
+  doctorCreate: doctorCreateReducer,
+  doctorUpdate:doctorUpdateReducer,
+  doctorDelete: doctorDeleteReducer,
+  appointmentList: appointmentListReducer,
+  appointmentDelete: appointmentDeleteReducer,
+  appointmentFinish: appointmentFinishReducer,
+  userList: userListReducer,
+  userDelete: userDeleteReducer,
+  userUpdate: userUpdateReducer,
+  doctorCategoryList: doctorCategoryListReducer,
+  appointmentSummary: appointmentSummaryReducer,
 });
 
-const composeEnhancer =window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store =createStore(
-    reducer,
-    initialState,
-    composeEnhancer(applyMiddleware(thunk)));
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  reducer,
+  initialState,
+  composeEnhancer(applyMiddleware(thunk))
+);
 
 export default store;
