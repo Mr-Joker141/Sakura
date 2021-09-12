@@ -2,7 +2,7 @@ import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import bcrypt from 'bcryptjs'
 import data from '../data.js';
-import User from '../models/userModel.js';
+import Users from '../models/userModel.js';
 import { generateToken, isAdmin, isAuth } from '../utils.js';
 
 const userRouter =express.Router();
@@ -10,7 +10,7 @@ const userRouter =express.Router();
 
 //list of top sellers
 userRouter.get('/top-sellers',expressAsyncHandler(async(req,res)=>{
-  const topSellers =await User.find({isSeller:true})
+  const topSellers =await Users.find({isSeller:true})
   .sort({'seller.rating':-1})
   .limit(3)
   res.send(topSellers);
@@ -22,8 +22,8 @@ userRouter.get('/top-sellers',expressAsyncHandler(async(req,res)=>{
 userRouter.get(
 '/seed',
  expressAsyncHandler( async (req,res) =>{
-     //await User.remove({});
-    const createdUsers = await User.insertMany(data.users);
+     //await Users.remove({});
+    const createdUsers = await Users.insertMany(data.users);
     res.send({ createdUsers });
     })
 );
@@ -31,7 +31,7 @@ userRouter.get(
 userRouter.post(
   '/signin',
   expressAsyncHandler(async(req,res)=>{
-    const user =await User.findOne({email:req.body.email})
+    const user =await Users.findOne({email:req.body.email})
     if(user){
         if(bcrypt.compareSync(req.body.password, user.password)){
             res.send({
@@ -52,7 +52,7 @@ userRouter.post(
 userRouter.post(
     '/register',
     expressAsyncHandler(async(req,res) =>{
-    const user =new User({
+    const user =new Users({
     name:req.body.name,
     email:req.body.email,
     password:bcrypt.hashSync(req.body.password,8)
@@ -75,11 +75,11 @@ userRouter.post(
 userRouter.get(
     '/:id',
     expressAsyncHandler(async (req, res) => {
-      const user = await User.findById(req.params.id);
+      const user = await Users.findById(req.params.id);
       if (user) {
         res.send(user);
       } else {
-        res.status(404).send({ message: 'User Not Found' });
+        res.status(404).send({ message: 'Users Not Found' });
       }
     })
   );
@@ -88,7 +88,7 @@ userRouter.get(
     '/profile',
     isAuth,
     expressAsyncHandler(async(req,res)=>{
-      const user =await User.findById(req.user._id);
+      const user =await Users.findById(req.user._id);
       if(user){
         user.name = req.body.name ||user.name;
         user.email =req.body.email || user.email;
@@ -114,7 +114,7 @@ userRouter.get(
   }));
 
   userRouter.get('/',isAuth,isAdmin,expressAsyncHandler(async(req,res)=>{
-    const users =await User.find({});
+    const users =await Users.find({});
     res.send(users);
   }));
 
@@ -123,22 +123,22 @@ userRouter.get(
     isAuth,
     isAdmin,
     expressAsyncHandler(async(req,res) =>{
-    const user =await User.findById(req.params.id);
+    const user =await Users.findById(req.params.id);
     if(user){
       if(user.email == 'methmi12@gmail.com'){
         res.status(400).send({message:'Cannot delete admin user'});
         return;
       }
       const deleteUser =await user.remove();
-      res.send({message:'User Deleted',user:deleteUser});
+      res.send({message:'Users Deleted',user:deleteUser});
     }else{
-      res.status(404).send({message:'User Not Found'})
+      res.status(404).send({message:'Users Not Found'})
     }
   })
   );
 
   userRouter.put('/:id',isAuth,isAdmin,expressAsyncHandler(async(req,res)=>{
-    const user =await User.findById(req.params.id);
+    const user =await Users.findById(req.params.id);
     if(user){
       user.name =req.body.name || user.name;
       user.email =req.body.email ||user.email;
@@ -147,9 +147,9 @@ userRouter.get(
       //user.isSeller =req.body.isSeller === user.isSeller ? user.isSeller : req.body.isSeller;
       //user.isAdmin =req.body.isAdmin === user.isAdmin ? user.isAdmin : req.body.isAdmin;
       const updatedUser =await user.save();
-      res.send({message:'User Updated',user:updatedUser});
+      res.send({message:'Users Updated',user:updatedUser});
     }else{
-      res.status(404).send({message:'User Not Found'});
+      res.status(404).send({message:'Users Not Found'});
     }
   }));
 
